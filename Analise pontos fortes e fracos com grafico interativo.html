@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Competitiva: Pontos Fortes e Fracos da CBA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .swot-card {
+            border-left-width: 4px;
+            transition: all 0.3s ease-in-out;
+        }
+        .swot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        #downloadBtn:hover {
+            background-color: #ef5675;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div>
+                    <h1 class="text-4xl font-bold text-[#003f5c]">Análise Competitiva da CBA</h1>
+                    <p class="mt-2 text-lg text-gray-600">Foco em Pontos Fortes e Fracos</p>
+                </div>
+                <button id="downloadBtn" class="mt-4 md:mt-0 flex items-center bg-[#003f5c] text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Baixar em PDF
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="intro" class="mb-16">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4">Contexto do Mercado</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    A CBA se destaca como uma das maiores produtoras de alumínio totalmente integradas do mundo, com uma forte base no Brasil. Para manter e expandir sua posição, é crucial entender seu posicionamento frente a concorrentes globais, que variam de gigantes integrados a players de nicho especializados em produtos de alto valor agregado. Esta análise visualiza os pontos fortes e fracos da CBA em um cenário competitivo dinâmico.
+                </p>
+            </div>
+        </section>
+
+        <section id="competitors" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Visão Geral dos Concorrentes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-[#374c80] mb-2">Hydro</h3>
+                    <p><strong class="text-gray-600">Foco:</strong> Integrado, com forte ênfase em energia renovável e sustentabilidade.</p>
+                    <p><strong class="text-gray-600">Alcance:</strong> Global, com forte presença na Europa e Brasil (parceria Albras).</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-[#374c80] mb-2">Alcoa / Albras</h3>
+                    <p><strong class="text-gray-600">Foco:</strong> Produção primária de alumínio e alumina em larga escala.</p>
+                    <p><strong class="text-gray-600">Alcance:</strong> Global, um dos maiores players mundiais.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-[#374c80] mb-2">Arconic</h3>
+                    <p><strong class="text-gray-600">Foco:</strong> Produtos de alto valor agregado (aeroespacial, automotivo).</p>
+                    <p><strong class="text-gray-600">Alcance:</strong> Global, focado em mercados de tecnologia avançada.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-[#374c80] mb-2">Constellium</h3>
+                    <p><strong class="text-gray-600">Foco:</strong> Soluções inovadoras de alumínio para embalagens, automotivo e aeroespacial.</p>
+                    <p><strong class="text-gray-600">Alcance:</strong> Forte presença na Europa e América do Norte.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-[#374c80] mb-2">Kaiser Aluminum</h3>
+                    <p><strong class="text-gray-600">Foco:</strong> Produtos semi-fabricados e especializados.</p>
+                    <p><strong class="text-gray-600">Alcance:</strong> Principalmente América do Norte.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="charts" class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-center text-[#003f5c] mb-4">Capacidade de Produção Anual</h3>
+                     <p class="text-center text-sm text-gray-500 mb-6">Comparativo da escala de produção de alumínio primário (dados ilustrativos em mil toneladas).</p>
+                    <div class="chart-container">
+                        <canvas id="productionChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-center text-[#003f5c] mb-4">Mix de Receita por Segmento</h3>
+                    <p class="text-center text-sm text-gray-500 mb-6">Análise da diversificação de receita entre produtos primários e de valor agregado (dados ilustrativos).</p>
+                    <div class="chart-container">
+                        <canvas id="revenueMixChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Análise de Pontos Fortes e Fracos da CBA</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md p-6 swot-card border-green-500">
+                    <h3 class="font-bold text-2xl text-green-600 mb-3">Forças ▲</h3>
+                    <ul class="space-y-2 list-disc list-inside text-gray-700" id="swot-strengths">
+                        <li><strong>Verticalização Completa:</strong> Controle da cadeia produtiva, da bauxita ao produto final.</li>
+                        <li><strong>Matriz Energética Renovável:</strong> Autossuficiência com hidrelétricas próprias, garantindo baixo custo e apelo sustentável.</li>
+                        <li><strong>Liderança no Brasil:</strong> Forte market share e reconhecimento da marca no mercado doméstico.</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 swot-card border-red-500">
+                    <h3 class="font-bold text-2xl text-red-600 mb-3">Fraquezas ▼</h3>
+                    <ul class="space-y-2 list-disc list-inside text-gray-700" id="swot-weaknesses">
+                        <li><strong>Exposição à Economia Brasileira:</strong> Dependência do mercado interno e da volatilidade econômica local.</li>
+                        <li><strong>Menor Diversificação Geográfica:</strong> Concentração de ativos e receita no Brasil em comparação com players globais.</li>
+                        <li><strong>Sensibilidade a Commodities:</strong> Exposição às flutuações de preços de insumos e do alumínio na LME.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="radar-analysis" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-center text-[#003f5c] mb-4">Análise Comparativa de Fatores Estratégicos</h3>
+                <p class="text-center text-sm text-gray-500 mb-6">Comparação da CBA com a média dos concorrentes em fatores-chave (escores de 1 a 10, dados ilustrativos).</p>
+                <div class="chart-container mx-auto" style="max-width: 700px;">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="sources" class="mb-16">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-6">Fontes da Pesquisa</h2>
+                <p class="text-gray-600 mb-6">As informações e dados (mesmo que ilustrativos) foram compilados com base em metodologias de análise de mercado e consultando fontes públicas e relatórios de mercado, tais como:</p>
+                <ul class="space-y-3 list-disc list-inside text-gray-700">
+                    <li>Páginas de Relações com Investidores (RI) da CBA, Alcoa, Norsk Hydro, Arconic, Constellium e Kaiser Aluminum.</li>
+                    <li>Relatórios Anuais e de Sustentabilidade das respectivas empresas.</li>
+                    <li>Dados de cotação de commodities da London Metal Exchange (LME).</li>
+                    <li>Artigos e análises de mercado de agências de notícias como Reuters, Bloomberg e portais de notícias de negócios.</li>
+                    <li>Relatórios setoriais sobre a indústria de alumínio.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-16 py-6">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Análise Estratégica. Todos os dados apresentados são ilustrativos e destinados a fins de análise.</p>
+        </div>
+    </footer>
+
+    <script>
+        const { jsPDF } = window.jspdf;
+        
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const btn = document.getElementById('downloadBtn');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = 'Gerando PDF...';
+
+            const elementsToHide = document.querySelectorAll('#downloadBtn');
+            elementsToHide.forEach(el => el.style.visibility = 'hidden');
+
+            html2canvas(document.body, {
+                scale: 2,
+                logging: false,
+                useCORS: true,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF({
+                    orientation: 'p',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                
+                let position = 0;
+                let remainingHeight = canvasHeight * pdfWidth / canvasWidth;
+
+                pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, canvasHeight * pdfWidth / canvasWidth);
+                remainingHeight -= pdfHeight;
+
+                while (remainingHeight > 0) {
+                    pdf.addPage();
+                    position -= pdfHeight;
+                    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, canvasHeight * pdfWidth / canvasWidth);
+                    remainingHeight -= pdfHeight;
+                }
+                
+                pdf.save('Analise_CBA.pdf');
+                
+                elementsToHide.forEach(el => el.style.visibility = 'visible');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }).catch(err => {
+                console.error("Erro ao gerar PDF:", err);
+                elementsToHide.forEach(el => el.style.visibility = 'visible');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            });
+        });
+
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const productionCtx = document.getElementById('productionChart').getContext('2d');
+        const productionChart = new Chart(productionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['CBA', 'Alcoa/Albras', 'Hydro', 'Arconic', 'Constellium', 'Kaiser'],
+                datasets: [{
+                    label: 'Produção (mil toneladas/ano)',
+                    data: [480, 2500, 1800, 350, 400, 300],
+                    backgroundColor: '#7a5195',
+                    borderColor: '#7a5195',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } },
+                ...tooltipTitleCallback
+            }
+        });
+
+        const revenueMixCtx = document.getElementById('revenueMixChart').getContext('2d');
+        const revenueMixChart = new Chart(revenueMixCtx, {
+            type: 'bar',
+            data: {
+                labels: ['CBA', 'Alcoa', 'Hydro', 'Arconic', 'Constellium'],
+                datasets: [
+                    { label: 'Primários', data: [60, 85, 70, 10, 15], backgroundColor: '#003f5c' },
+                    { label: 'Laminados', data: [30, 10, 20, 50, 45], backgroundColor: '#ef5675' },
+                    { label: 'Extrudados e Outros', data: [10, 5, 10, 40, 40], backgroundColor: '#ffa600' }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } },
+                ...tooltipTitleCallback
+            }
+        });
+
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapLabel('Sustentabilidade (Energia Renovável)'), 
+                    wrapLabel('Integração Vertical'), 
+                    wrapLabel('Inovação (Produtos Valor Agregado)'), 
+                    wrapLabel('Alcance Global'), 
+                    wrapLabel('Eficiência de Custo')
+                ],
+                datasets: [{
+                    label: 'CBA',
+                    data: [9, 9, 6, 5, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                    borderColor: '#ef5675',
+                    pointBackgroundColor: '#ef5675',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#ef5675'
+                }, {
+                    label: 'Média dos Concorrentes',
+                    data: [7, 6, 8, 8, 7],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                    borderColor: '#003f5c',
+                    pointBackgroundColor: '#003f5c',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#003f5c'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: { line: { borderWidth: 3 } },
+                scales: {
+                    r: {
+                        angleLines: { display: true },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        pointLabels: { font: { size: 12 } }
+                    }
+                },
+                ...tooltipTitleCallback
+            }
+        });
+    </script>
+</body>
+</html>
